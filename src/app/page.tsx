@@ -45,13 +45,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════
             HERO  —  split layout: left content / right image
         ═══════════════════════════════════════════════════ */}
-        <section style={{
-          minHeight: '100vh',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          background: '#F4F7FC',
-          paddingTop: '72px', // navbar offset
-        }}>
+        <section className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '100vh', background: '#F4F7FC', paddingTop: '72px' }}>
 
           {/* LEFT — content panel */}
           <div style={{
@@ -134,8 +128,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — image mosaic */}
-          <div style={{ position: 'relative', overflow: 'hidden', minHeight: '100vh' }}>
+          {/* RIGHT — image panel */}
+          <div className="relative hidden lg:block" style={{ minHeight: '100vh' }}>
             {/* Main full image */}
             <Image
               src={IMG_TOKYO_DAY}
@@ -228,7 +222,7 @@ export default function HomePage() {
         ═══════════════════════════════════════════════════ */}
         <section className="section" style={{ background: '#F4F7FC' }}>
           <div className="wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '56px', alignItems: 'center', marginBottom: '64px' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center" style={{ marginBottom: '64px' }}>
               <div>
                 <p style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#1B3A6B', marginBottom: '12px' }}>Life in Japan</p>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,3vw,2.6rem)', fontWeight: 700, color: '#0D1B2A', lineHeight: 1.1 }}>A Better Future<br />Awaits You</h2>
@@ -239,7 +233,7 @@ export default function HomePage() {
             </div>
 
             {/* 3-image editorial grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr', gap: '10px', height: '360px', marginBottom: '40px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: '10px', height: '360px', marginBottom: '40px' }}>
               {[
                 { src: IMG_SAKURA,  alt: 'Beautiful Japan scenery',    label: 'Quality of Life' },
                 { src: IMG_TORII,   alt: 'Fushimi Inari torii gates',  label: 'Rich Culture' },
@@ -256,7 +250,7 @@ export default function HomePage() {
             </div>
 
             {/* 3 stat callouts */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 { value: '¥200K+', label: 'Average Monthly Salary',    desc: 'Starting salary for SSW workers in Japan' },
                 { value: '5 yrs',  label: 'SSW Type 2 Visa Duration',  desc: 'With option to bring family members' },
@@ -353,22 +347,29 @@ export default function HomePage() {
         ═══════════════════════════════════════════════════ */}
         <section className="section" style={{ background: '#0D1B2A' }}>
           <div className="wrap">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '64px', alignItems: 'start' }}>
-              <div style={{ position: 'sticky', top: '100px' }}>
+            {/* Responsive: stacked on mobile, sidebar+grid on lg+ */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16 items-start">
+
+              {/* Sticky sidebar — only sticks on large screens */}
+              <div className="lg:sticky lg:top-24">
                 <p style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#4A7FC1', marginBottom: '12px' }}>Why Choose Us</p>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,3vw,2.6rem)', fontWeight: 700, color: '#EEF3FB', lineHeight: 1.1, marginBottom: '20px' }}>The Chhayachhetra Difference</h2>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,3vw,2.6rem)', fontWeight: 700, color: '#EEF3FB', lineHeight: 1.1, marginBottom: '20px' }}>
+                  The Chhayachhetra Difference
+                </h2>
                 <p style={{ fontSize: '13px', color: 'rgba(238,243,251,0.45)', lineHeight: 1.80 }}>
-                  We're not a generic "abroad placement" agency. We are Nepal's dedicated Japan employment specialists — built from the ground up to serve one purpose.
+                  We&apos;re not a generic &ldquo;abroad placement&rdquo; agency. We are Nepal&apos;s dedicated Japan employment specialists — built from the ground up to serve one purpose.
                 </p>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'rgba(74,127,193,0.08)' }}>
+
+              {/* Feature cards — 1 col mobile, 2 col sm+ */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ background: 'rgba(74,127,193,0.08)' }}>
                 {[
-                  { num:'01', title:'Japan-Exclusive Focus',    desc:"Every program, instructor, and process is built around Japan's specific requirements — not a generic abroad package." },
-                  { num:'02', title:'Registered & Compliant',   desc:'Government-registered, DOE-compliant. Safe, legal, and ethical placement — every single time.' },
-                  { num:'03', title:'End-to-End Support',       desc:'Training, language, SSW test, visa, employer matching, pre-departure — all under one roof in Samakhusi.' },
-                  { num:'04', title:'Transparent Costs',        desc:'No hidden fees. Complete cost breakdown upfront — training, visa, agent fees — so you plan with confidence.' },
-                  { num:'05', title:'Qualified Instructors',    desc:'JLPT-certified language teachers and vocational trainers with real Japan work experience.' },
-                  { num:'06', title:'Employer Network',         desc:'Direct relationships with verified Japanese employers and RCO/JITCO sending organizations.' },
+                  { num:'01', title:'Japan-Exclusive Focus',   desc:"Every program, instructor, and process is built around Japan's specific requirements — not a generic abroad package." },
+                  { num:'02', title:'Registered & Compliant',  desc:'Government-registered, DOE-compliant. Safe, legal, and ethical placement — every single time.' },
+                  { num:'03', title:'End-to-End Support',      desc:'Training, language, SSW test, visa, employer matching, pre-departure — all under one roof in Samakhusi.' },
+                  { num:'04', title:'Transparent Costs',       desc:'No hidden fees. Complete cost breakdown upfront — training, visa, agent fees — so you plan with confidence.' },
+                  { num:'05', title:'Qualified Instructors',   desc:'JLPT-certified language teachers and vocational trainers with real Japan work experience.' },
+                  { num:'06', title:'Employer Network',        desc:'Direct relationships with verified Japanese employers and RCO/JITCO sending organizations.' },
                 ].map(item => (
                   <div key={item.num} style={{ background: '#0F2035', padding: '28px 24px' }}>
                     <div style={{ fontSize: '11px', fontWeight: 700, color: '#4A7FC1', marginBottom: '10px', letterSpacing: '0.08em' }}>{item.num}</div>
@@ -389,7 +390,7 @@ export default function HomePage() {
             <Image src={IMG_FUJI} alt="Mount Fuji Japan" fill style={{ objectFit: 'cover', objectPosition: 'center 60%' }} unoptimized />
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,18,38,0.78)' }} />
           </div>
-          <div className="wrap" style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: '1fr auto', gap: '48px', alignItems: 'center' }}>
+          <div className="wrap grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-12 items-center" style={{ position: 'relative', zIndex: 1 }}>
             <div>
               <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.30em', color: '#4A7FC1', marginBottom: '16px' }}>
                 日本への旅 — YOUR JOURNEY TO JAPAN
